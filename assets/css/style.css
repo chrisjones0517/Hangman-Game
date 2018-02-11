@@ -1,0 +1,23 @@
+input:focus {
+    outline: none;
+    border: none;
+}
+
+input {
+    max-width: 70vw;
+}
+
+input:hover {
+    outline: none;
+    border: none;
+}
+
+input:active {
+    outline: none;
+    border: none;
+}
+
+input:onmouseout {
+    outline: none;
+    border: none;
+}
