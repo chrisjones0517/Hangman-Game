@@ -59,7 +59,6 @@ document.addEventListener('keypress', (e) => {
     }
     
     if (wins.textContent == wordList.length) {
-        console.log('I ran !!!');
         hide.style.display = 'none';
         message.style.display = 'block';
         message.textContent = 'YOU WIN!!!';
@@ -89,10 +88,6 @@ function wordSelector() {
 }
 
 function compare(e) {
-    let pos = word.indexOf(e.key);
-    let pos2 = word.lastIndexOf(e.key);
-    let checkDup = userArray.indexOf(e.key);
-    let search;
     let totalMisses = false;
     let hit = false;
     let repeatChar = false;
@@ -109,7 +104,6 @@ function compare(e) {
     
     for (let i = 0; i < letterArray.length; i++) {
         if (letterArray[i] === e.key && repeatChar === false) {
-            //console.log(letterArray[i]);
             blankArray[i] = e.key;
             hit = true;
             charCount++;
