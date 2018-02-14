@@ -79,7 +79,6 @@ function wordSelector() {
     word = wordList[wordIndex];
     let wil = word.length;
     blankArray = [];
-    console.log(wordList[wordIndex]);////////////////////////////////////////////////////////////
     for (let i = 0; i < wil; i++) {
         blankArray.push('_');
     }
