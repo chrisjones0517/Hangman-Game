@@ -81,3 +81,8 @@ span {
 .tilt img {
     transform: rotate(-4deg);
 }
+
+.winBox {
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 2rem;
+}

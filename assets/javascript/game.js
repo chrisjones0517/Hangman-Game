@@ -1,4 +1,5 @@
 const wins = document.querySelector('.wins');
+const possWins = document.querySelector('.possWins');
 const currentWord = document.querySelector('.currentWord');
 const guessesRmg = document.querySelector('.guessesRmg');
 const lettersUsed = document.querySelector('.lettersUsed');
@@ -20,6 +21,7 @@ let word;
 let charCount = 0;
 guessesRmg.textContent = 10;
 wins.textContent = 0;
+possWins.textContent = wordList.length;
 
 button.addEventListener('click', (e) => {
     e.preventDefault();
@@ -36,6 +38,7 @@ button.addEventListener('click', (e) => {
     wins.textContent = 0;
     currentWord.textContent = '';
     gameStatus = 0;
+    charCount = 0;
 });
 
 document.addEventListener('keypress', (e) => {
@@ -57,7 +60,7 @@ document.addEventListener('keypress', (e) => {
         lose.style.display = 'block';
         win.style.display = 'none';
     }
-    
+
     if (wins.textContent == wordList.length) {
         hide.style.display = 'none';
         message.style.display = 'block';
@@ -76,11 +79,11 @@ function wordSelector() {
     word = wordList[wordIndex];
     let wil = word.length;
     blankArray = [];
-
+    console.log(wordList[wordIndex]);////////////////////////////////////////////////////////////
     for (let i = 0; i < wil; i++) {
         blankArray.push('_');
     }
-    
+
     currentWord.textContent = blankArray.join(' ');
     if (wordIndex + 1 < wordList.length) {
         wordIndex++;
@@ -101,7 +104,7 @@ function compare(e) {
             repeatChar = true;
         }
     }
-    
+
     for (let i = 0; i < letterArray.length; i++) {
         if (letterArray[i] === e.key && repeatChar === false) {
             blankArray[i] = e.key;
@@ -118,17 +121,19 @@ function compare(e) {
         guessesRmg.textContent--;
         hit = false;
     }
-    
+
     if (charCount === letterArray.length) {
         audio.play();
-        wins.textContent++;
-        guessesRmg.textContent = 10;
-        charCount = 0;
-        userArray = [];
-        lettersUsed.textContent = userArray;
-        wordSelector();
+        setTimeout(() => {
+            wins.textContent++;
+            guessesRmg.textContent = 10;
+            charCount = 0;
+            userArray = [];
+            lettersUsed.textContent = userArray;
+            wordSelector();
+        }, 1000);
     }
-    
+
     currentWord.textContent = blankArray.join(' ');
 }
 
