@@ -44,6 +44,7 @@ button.addEventListener('click', (e) => {
 document.addEventListener('keypress', (e) => {
     if (gameStatus === 1 && wins.textContent < wordList.length) {
         compare(e);
+
     } else {
         wordList = shuffle(wordList);
         if (wins.textContent < wordList.length) {
@@ -59,16 +60,6 @@ document.addEventListener('keypress', (e) => {
         message.style.fontSize = '3rem';
         lose.style.display = 'block';
         win.style.display = 'none';
-    }
-
-    if (wins.textContent == wordList.length) {
-        hide.style.display = 'none';
-        message.style.display = 'block';
-        message.textContent = 'YOU WIN!!!';
-        message.style.border = '5px solid green';
-        message.style.fontSize = '3rem';
-        win.style.display = 'block';
-        lose.style.display = 'none';
     }
 
     gameStatus = 1;
@@ -92,20 +83,22 @@ function wordSelector() {
 function compare(e) {
     let totalMisses = false;
     let hit = false;
-    let repeatChar = false;
+    let repeatChar = 0;
     let letterArray = word.split('');
 
     userArray.push(e.key);
-    lettersUsed.textContent = userArray.join(' ');
 
     for (let i = 0; i < userArray.length; i++) {
         if (userArray[i - 1] === e.key) {
-            repeatChar = true;
+            repeatChar += 1;
+            userArray.pop();
         }
     }
 
+    lettersUsed.textContent = userArray.join(' ');
+
     for (let i = 0; i < letterArray.length; i++) {
-        if (letterArray[i] === e.key && repeatChar === false) {
+        if (letterArray[i] === e.key && repeatChar === 0) {
             blankArray[i] = e.key;
             hit = true;
             charCount++;
@@ -114,15 +107,14 @@ function compare(e) {
         }
     }
 
-    repeatChar = false;
-
-    if (totalMisses && !hit) {
+    if (totalMisses && !hit && repeatChar === 0) {
         guessesRmg.textContent--;
         hit = false;
     }
 
     if (charCount === letterArray.length) {
         audio.play();
+
         setTimeout(() => {
             wins.textContent++;
             guessesRmg.textContent = 10;
@@ -130,6 +122,16 @@ function compare(e) {
             userArray = [];
             lettersUsed.textContent = userArray;
             wordSelector();
+
+            if (wins.textContent == wordList.length) {
+                hide.style.display = 'none';
+                message.style.display = 'block';
+                message.textContent = 'YOU WIN!!!';
+                message.style.border = '5px solid green';
+                message.style.fontSize = '3rem';
+                win.style.display = 'block';
+                lose.style.display = 'none';
+            }
         }, 1000);
     }
 
