@@ -86,3 +86,18 @@ span {
     font-family: 'Nanum Pen Script', cursive;
     font-size: 2rem;
 }
+
+.start {
+    color: #ff0000;
+    animation-name: spEffect3;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spEffect3 {
+    0%   {color: rgba(255, 0, 0, 1);}
+    25%  {color: rgba(255, 0, 0, 0);}
+    50%  {color: rgba(255, 0, 0, 1);}
+    75%  {color: rgba(255, 0, 0, 0);}
+    100% {color: rgba(255, 0, 0, 1);}
+}

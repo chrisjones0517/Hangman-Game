@@ -42,6 +42,7 @@ button.addEventListener('click', (e) => {
 });
 
 document.addEventListener('keypress', (e) => {
+    start.style.display = 'none';
     if (gameStatus === 1 && wins.textContent < wordList.length) {
         compare(e);
 
@@ -63,7 +64,6 @@ document.addEventListener('keypress', (e) => {
     }
 
     gameStatus = 1;
-    start.style.display = 'none';
 });
 
 function wordSelector() {
@@ -153,6 +153,10 @@ function shuffle(array) {
 
 
 
+
+    
+    
+    
 
 
 
